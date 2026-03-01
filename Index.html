@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>$MWAR — MEMEWAR | Just a Chill Guy</title>
+  <meta name="description" content="$MWAR (MEMEWAR) — Weaponized memes. No politics. Just a chill guy." />
+  <meta property="og:title" content="$MWAR — MEMEWAR" />
+  <meta property="og:description" content="Weaponized memes. No politics. Just a chill guy." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      --bg:#070b12;
+      --panel:rgba(255,255,255,.06);
+      --stroke:rgba(255,255,255,.10);
+      --text:#eaf0ff;
+      --muted:rgba(234,240,255,.70);
+      --accent:#7cffc4;
+      --accent2:#7aa7ff;
+      --shadow: 0 16px 60px rgba(0,0,0,.55);
+      --radius:22px;
+      --max: 1040px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(900px 700px at 18% 12%, rgba(122,167,255,.20), transparent 60%),
+        radial-gradient(900px 700px at 78% 22%, rgba(124,255,196,.18), transparent 58%),
+        radial-gradient(1100px 900px at 50% 110%, rgba(255, 140, 75, .14), transparent 65%),
+        var(--bg);
+      overflow-x:hidden;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max);margin:0 auto;padding:22px 18px 70px}
+    .topbar{
+      position:sticky;top:0;z-index:30;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(7,11,18,.80), rgba(7,11,18,.30));
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .topbar-inner{max-width:var(--max);margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.4px}
+    .badge{
+      padding:8px 12px;border-radius:999px;
+      background:rgba(124,255,196,.10);
+      border:1px solid rgba(124,255,196,.25);
+      color:var(--accent);
+      font-weight:900;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 14px;border-radius:14px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      text-decoration:none;font-weight:800;
+      transition:.15s transform, .15s background, .15s border;
+    }
+    .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.16)}
+    .btn.primary{
+      background:linear-gradient(90deg, rgba(124,255,196,.18), rgba(124,255,196,.06));
+      border-color:rgba(124,255,196,.28);
+    }
+    .btn.primary:hover{border-color:rgba(124,255,196,.40)}
+    .hero{padding:44px 0 18px}
+    .hero-grid{
+      display:grid;gap:14px;
+      grid-template-columns:1fr;
+      align-items:stretch;
+    }
+    @media (min-width: 920px){
+      .hero-grid{grid-template-columns: 1.05fr .95fr;}
+    }
+    .card{
+      background:var(--panel);
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-card{padding:26px}
+    h1{margin:10px 0 12px;font-size:46px;line-height:1.05;letter-spacing:-.02em}
+    @media (max-width:520px){ h1{font-size:38px} }
+    .kicker{
+      display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+      color:var(--muted);font-weight:900;letter-spacing:.10em;text-transform:uppercase;font-size:12px
+    }
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+    .lead{color:var(--muted);font-size:16px;line-height:1.7;margin:0 0 16px}
+    .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .pillrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .pill{
+      padding:8px 10px;border-radius:999px;
+      background:rgba(122,167,255,.10);
+      border:1px solid rgba(122,167,255,.22);
+      color:rgba(234,240,255,.85);
+      font-weight:800;font-size:12px;
+    }
+    .stats{padding:22px}
+    .stat{
+      padding:14px 14px;border-radius:18px;
+      background:rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.10);
+      margin-bottom:12px;
+    }
+    .stat:last-child{margin-bottom:0}
+    .label{color:var(--muted);font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+    .value{margin-top:6px;font-weight:900;font-size:16px}
+    code{
+      background:rgba(124,255,196,.10);
+      border:1px solid rgba(124,255,196,.18);
+      padding:3px 8px;border-radius:10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    .section{margin-top:18px}
+    .section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 0 10px}
+    .section-title h2{margin:0;font-size:18px;letter-spacing:.02em}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+    .col-12{grid-column:span 12}
+    .col-6{grid-column:span 12}
+    .col-4{grid-column:span 12}
+    @media(min-width:900px){
+      .col-6{grid-column:span 6}
+      .col-4{grid-column:span 4}
+    }
+    .box{padding:18px}
+    .box p{margin:8px 0 0;color:var(--muted);line-height:1.65}
+    .list{margin:12px 0 0;padding:0;list-style:none}
+    .list li{
+      padding:10px 0;
+      border-top:1px solid rgba(255,255,255,.08);
+      color:var(--muted);
+      display:flex;gap:10px;align-items:flex-start;
+    }
+    .list li:first-child{border-top:none}
+    .ic{flex:0 0 auto;width:22px;height:22px;border-radius:7px;
+      background:rgba(124,255,196,.10);
+      border:1px solid rgba(124,255,196,.18);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--accent);
+      font-weight:900;
+    }
+    .roadmap-step{padding:18px}
+    .step-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .step-tag{
+      font-size:12px;font-weight:900;letter-spacing:.10em;text-transform:uppercase;
+      color:rgba(234,240,255,.75);
+    }
+    .step-name{font-size:18px;font-weight:950;margin:6px 0 0}
+    .foot{
+      margin-top:24px;
+      padding-top:16px;
+      border-top:1px solid rgba(255,255,255,.08);
+      color:rgba(234,240,255,.70);
+      font-size:12px;
+      line-height:1.7;
+    }
+    .tiny{color:rgba(234,240,255,.55)}
+    .copyrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .smallbtn{
+      padding:8px 10px;border-radius:12px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      color:rgba(234,240,255,.85);
+      cursor:pointer;font-weight:800;
+    }
+    .smallbtn:hover{background:rgba(255,255,255,.08)}
+    .toast{
+      position:fixed;left:50%;bottom:16px;transform:translateX(-50%);
+      padding:10px 12px;border-radius:14px;
+      background:rgba(0,0,0,.65);
+      border:1px solid rgba(255,255,255,.12);
+      color:rgba(234,240,255,.9);
+      display:none;z-index:99
+    }
+  </style>
+</head>
+
+<body>
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="badge">🪖 $MWAR</span>
+        <span>MEMEWAR</span>
+      </div>
+      <div class="nav">
+        <a class="btn" href="#roadmap">Roadmap</a>
+        <a class="btn" href="#how">How</a>
+        <a class="btn" href="#links">Links</a>
+        <a class="btn primary" href="https://t.me/YOUR_TELEGRAM" target="_blank" rel="noreferrer">Join Telegram</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-grid">
+        <div class="card hero-card">
+          <div class="kicker"><span class="dot"></span> weaponized memes • no politics • just vibes</div>
+          <h1>Just a Chill Guy<br/>in the Meme War.</h1>
+          <p class="lead">
+            $MWAR is a culture coin. The battlefield is the timeline.
+            We do NOT promote real-world conflict — only memes, community missions, and chill energy.
+          </p>
+
+          <div class="pillrow">
+            <span class="pill">🧊 Chill energy</span>
+            <span class="pill">🪖 Meme army</span>
+            <span class="pill">📈 Break the algo</span>
+            <span class="pill">🫡 Community missions</span>
+          </div>
+
+          <div class="cta">
+            <a class="btn primary" href="https://x.com/YOUR_HANDLE" target="_blank" rel="noreferrer">Follow on X</a>
+            <a class="btn" href="https://t.me/YOUR_TELEGRAM" target="_blank" rel="noreferrer">Enter the War Room</a>
+            <a class="btn" href="#how">How it works</a>
+          </div>
+        </div>
+
+        <div class="card stats">
+          <div class="stat">
+            <div class="label">Ticker</div>
+            <div class="value"><code>$MWAR</code></div>
+          </div>
+          <div class="stat">
+            <div class="label">Chain</div>
+            <div class="value">Solana</div>
+          </div>
+          <div class="stat">
+            <div class="label">Contract Address</div>
+            <div class="value" id="ca"><code>COMING SOON</code></div>
+            <div class="copyrow">
+              <button class="smallbtn" onclick="copyCA()">Copy CA</button>
+              <button class="smallbtn" onclick="scrollToLinks()">Where to buy</button>
+            </div>
+            <div class="tiny" style="margin-top:10px">
+              Add your CA when live. Until then keep it “COMING SOON”.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW -->
+    <section class="section" id="how">
+      <div class="section-title">
+        <h2>How it works</h2>
+        <span class="tiny">simple > complicated</span>
+      </div>
+
+      <div class="grid">
+        <div class="card box col-4">
+          <div class="kicker"><span class="dot"></span> Step 1</div>
+          <h3 style="margin:10px 0 0">Join the War Room</h3>
+          <p>Telegram is HQ. Drop memes, meet soldiers, get missions.</p>
+        </div>
+
+        <div class="card box col-4">
+          <div class="kicker"><span class="dot"></span> Step 2</div>
+          <h3 style="margin:10px 0 0">Post memes daily</h3>
+          <p>We win with consistency: replies, quotes, templates, sticker packs.</p>
+        </div>
+
+        <div class="card box col-4">
+          <div class="kicker"><span class="dot"></span> Step 3</div>
+          <h3 style="margin:10px 0 0">Break the algorithm</h3>
+          <p>Coordinated raids, contests, and community shoutouts.</p>
+        </div>
+      </div>
+
+      <div class="grid" style="margin-top:14px">
+        <div class="card box col-12">
+          <div class="kicker"><span class="dot"></span> Rules of engagement</div>
+          <ul class="list">
+            <li><span class="ic">✅</span><span>No hate. No politics. No real-world conflict content.</span></li>
+            <li><span class="ic">✅</span><span>No scams / no fake CA. Verify in pinned Telegram.</span></li>
+            <li><span class="ic">✅</span><span>We’re here for memes, vibes, and chill energy.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section class="section" id="roadmap">
+      <div class="section-title">
+        <h2>Roadmap</h2>
+        <span class="tiny">meme-proof & realistic</span>
+      </div>
+
+      <div class="grid">
+        <div class="card roadmap-step col-6">
+          <div class="step-head">
+            <div class="step-tag">Phase 1</div>
+            <div class="badge" style="padding:6px 10px">Recruit</div>
+          </div>
+          <div class="step-name">Build the Army</div>
+          <ul class="list">
+            <li><span class="ic">🪖</span><span>Launch on PumpFun</span></li>
+            <li><span class="ic">📣</span><span>X + Telegram live, pinned rules + links</span></li>
+            <li><span class="ic">🧩</span><span>First meme templates + sticker pack</span></li>
+            <li><span class="ic">🏁</span><span>Daily missions + first meme contest</span></li>
+          </ul>
+        </div>
+
+        <div class="card roadmap-step col-6">
+          <div class="step-head">
+            <div class="step-tag">Phase 2</div>
+            <div class="badge" style="padding:6px 10px;color:#cfe3ff;border-color:rgba(122,167,255,.35);background:rgba(122,167,255,.10)">Meme Supremacy</div>
+          </div>
+          <div class="step-name">Dominate the Timeline</div>
+          <ul class="list">
+            <li><span class="ic">🏆</span><span>Weekly meme contests + community shoutouts</span></li>
+            <li><span class="ic">👤</span><span>PFP movement (helmets / chill guy variants)</span></li>
+            <li><span class="ic">🎬</span><span>GIF pack for reply warfare</span></li>
+            <li><span class="ic">🧊</span><span>“Just a chill guy” campaign</span></li>
+          </ul>
+        </div>
+
+        <div class="card roadmap-step col-6">
+          <div class="step-head">
+            <div class="step-tag">Phase 3</div>
+            <div class="badge" style="padding:6px 10px;background:rgba(255,140,75,.10);border-color:rgba(255,140,75,.28);color:#ffd9c4">The Big Raid</div>
+          </div>
+          <div class="step-name">Break the Algorithm</div>
+          <ul class="list">
+            <li><span class="ic">⚡</span><span>Coordinated raids under big accounts (daily)</span></li>
+            <li><span class="ic">🤝</span><span>Meme collabs + community “war room” ops</span></li>
+            <li><span class="ic">📊</span><span>Leaderboards (top posters / recruiters)</span></li>
+            <li><span class="ic">🔥</span><span>Major content push week</span></li>
+          </ul>
+        </div>
+
+        <div class="card roadmap-step col-6">
+          <div class="step-head">
+            <div class="step-tag">Phase 4</div>
+            <div class="badge" style="padding:6px 10px">Culture</div>
+          </div>
+          <div class="step-name">Become Immortal</div>
+          <ul class="list">
+            <li><span class="ic">🧢</span><span>Merch drops (caps / stickers / posters)</span></li>
+            <li><span class="ic">🏟️</span><span>Meme War Championships (community events)</span></li>
+            <li><span class="ic">🗂️</span><span>Meme archive page (best of MWAR)</span></li>
+            <li><span class="ic">🌍</span><span>Keep it fun. Keep it chill.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- LINKS -->
+    <section class="section" id="links">
+      <div class="section-title">
+        <h2>Links</h2>
+        <span class="tiny">add your real links</span>
+      </div>
+
+      <div class="grid">
+        <div class="card box col-6">
+          <h3 style="margin:0 0 6px">Official</h3>
+          <ul class="list">
+            <li><span class="ic">𝕏</span><span><a href="https://x.com/YOUR_HANDLE" target="_blank" rel="noreferrer">Twitter / X</a></span></li>
+            <li><span class="ic">📣</span><span><a href="https://t.me/YOUR_TELEGRAM" target="_blank" rel="noreferrer">Telegram</a></span></li>
+            <li><span class="ic">🌐</span><span><a href="#top">Website</a></span></li>
+          </ul>
+        </div>
+
+        <div class="card box col-6">
+          <h3 style="margin:0 0 6px">Where to buy</h3>
+          <p>
+            Add your PumpFun link (and later DEX/Chart links) when live.
+          </p>
+          <ul class="list">
+            <li><span class="ic">🧨</span><span><a href="https://pump.fun/" target="_blank" rel="noreferrer">PumpFun</a> (add your token page)</span></li>
+            <li><span class="ic">📈</span><span>DEX / chart links (soon)</span></li>
+            <li><span class="ic">🧾</span><span>Verified CA: check pinned message in Telegram</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="foot">
+        <strong>Disclaimer:</strong> $MWAR is a meme token with no intrinsic value or expectation of profit.
+        This website is for entertainment only and is not financial advice.
+        <div class="tiny" style="margin-top:8px">
+          We do not promote real-world conflict content. Keep it memes & chill.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast">Copied!</div>
+
+  <script>
+    // === CONFIG: set your CA here once live ===
+    const CONTRACT_ADDRESS = "COMING SOON"; // e.g. "ABCD...1234"
+
+    // render CA
+    (function(){
+      const caEl = document.getElementById("ca");
+      if (!caEl) return;
+      caEl.innerHTML = "<code>" + escapeHtml(CONTRACT_ADDRESS) + "</code>";
+    })();
+
+    function copyCA(){
+      const val = CONTRACT_ADDRESS;
+      if (!val || val === "COMING SOON"){
+        toast("CA not live yet");
+        return;
+      }
+      navigator.clipboard.writeText(val).then(() => toast("CA copied"));
+    }
+
+    function scrollToLinks(){
+      document.getElementById("links").scrollIntoView({behavior:"smooth"});
+    }
+
+    function toast(msg){
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.style.display = "block";
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(()=> t.style.display="none", 1600);
+    }
+
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+  </script>
+</body>
+</html>
